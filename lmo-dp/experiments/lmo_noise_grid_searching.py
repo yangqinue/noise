@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from check_privacy_and_statistics import compute_privacy_lmo, compute_usefulness_lmo
+from check_privacy_and_statistics import compute_privacy_lmo, compute_usefulness_lmo1
 
 
 def take_Si(SS):
@@ -83,7 +83,7 @@ def search_usefulness(SS, epsilon_threshold, lmo_gamma=0.9, demo_cnt=1000):
     searched_parameters["usefulness"] = 0
     for lmo in take_Si(SS):
         privacy_lmo = compute_privacy_lmo(lmo)
-        usefulness, _ = compute_usefulness_lmo(lmo, lmo_gamma=lmo_gamma)
+        usefulness, _ = compute_usefulness_lmo1(lmo, lmo_gamma=lmo_gamma)
         if privacy_lmo==[]:
             continue
         else:
@@ -110,7 +110,7 @@ def save_epsilon_usefulness(SS, epsilon_threshold, lmo_gamma=0.9, demo_cnt=1000)
             columns.extend(["overall_epsilon", "usefulness"])
             df=pd.DataFrame([], columns=columns)
         privacy_lmo = compute_privacy_lmo(lmo)
-        usefulness, _ = compute_usefulness_lmo(lmo, lmo_gamma=lmo_gamma)
+        usefulness, _ = compute_usefulness_lmo1(lmo, lmo_gamma=lmo_gamma)
         if privacy_lmo==[]:
             continue
         else:

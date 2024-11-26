@@ -76,6 +76,9 @@ def compute_privacy_lmo(lmo, steps=1):
     
     return overall_epsilon, opt_order, rdp_lmo
 
+def compute_usefulness_lmo1(lmo):
+    mean = lmo["G_k"] * lmo["G_theta"] + (lmo['U_b'] + lmo['U_a'])/2 + 1/lmo["E_lambda"]
+    return mean, None
 
 def compute_usefulness_lmo(lmo, lmo_gamma=0.9):
     # usefulness = 1 - M1(-a1*gamma) * M3(-a3*gamma) * M4(-a4*gamma)
